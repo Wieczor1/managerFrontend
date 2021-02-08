@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+<!--TODO ngIfa jakiegos co sprawdza ze user ma appki i czy chce dodac do kazdej czy do konkretnie wybranej-->
+  <div class="form-group">
+    <label for="file">Choose File: </label><br>
+    <input type="file"
+           id="file"
+           (change)="handleFileInput($event.target.files)">
+  </div>
+  <button class="btn btn-success" [disabled]="!fileToUpload"  type="submit">Submit</button>
+</form>

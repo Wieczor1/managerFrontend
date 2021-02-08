@@ -1,0 +1,22 @@
+<h3 mat-dialog-title *ngIf="apps?.length > 0; else newTitle">Select App to add file to:</h3>
+<ng-template #newTitle><h3>No App belonging to user</h3></ng-template>
+
+<div *ngIf="apps?.length > 0; else newApp"mat-dialog-content>
+  <label for="apps">Choose an app:</label>
+  <select [(ngModel)]="selectedApp"  name="app" id="apps">
+    <option [ngValue]="app" *ngFor="let app of apps;">{{app.name}}</option>
+  </select>
+</div>
+<ng-template #newApp>
+  <p>This user has no Apps belonging to him. You have to create App first!</p>
+</ng-template>
+
+<div *ngIf="apps?.length > 0; else newAppButtons" mat-dialog-actions>
+    <button class="mat-raised-button btn btn-success" (click)="selectAppAndRedirect(selectedApp)">Select</button>
+    <button class="mat-raised-button btn btn-danger"  style="margin-left: 10px" (click)="close()">Close</button>
+
+</div>
+<ng-template #newAppButtons>
+
+  <button class="mat-raised-button" (click)="close()">Close</button>
+</ng-template>

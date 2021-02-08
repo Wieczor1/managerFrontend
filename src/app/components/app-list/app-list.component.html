@@ -1,0 +1,38 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">Simple Table</h4>
+        </div>
+        <div class=" card-body">
+          <div id="apptable" class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+              <tr>
+                <th>Name</th>
+                <th>Domain</th>
+                <th>Version</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let app of apps">
+                <td>{{app.name}}</td>
+                <td>{{app.domain}}</td>
+                <td>{{app.version}}</td>
+                <td>
+                  <button (click)="updateApp(app.id)" class="btn btn-info">Update</button>
+                  <button (click)="deleteApp(app.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                  <button (click)="appDetails(app.id)" class="btn btn-info" style="margin-left: 10px;">Details</button>
+                  <button (click)="uploadFile(app.id)" class="btn btn-info" style="margin-left: 10px;">Add file</button>
+                  <button (click)="uploadImage(app.id)" class="btn btn-info" style="margin-left: 10px;">Add image</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

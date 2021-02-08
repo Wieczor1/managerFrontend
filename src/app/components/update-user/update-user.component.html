@@ -1,0 +1,60 @@
+<div class="col-md-6 offset-md-3">
+  <h3>Update user</h3>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" name="firstName"
+             formControlName="firstName">
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+           class="alert alert-danger">
+        <div *ngIf="firstName.errors.required">
+          First name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" name="lastName"
+             formControlName="lastName">
+      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+           class="alert alert-danger">
+        <div *ngIf="lastName.errors.required">
+          Last name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="text" class="form-control" name="email"
+             formControlName="email">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+          E-mail is required.
+        </div>
+        <div *ngIf="email.errors.email || email.errors.pattern">
+          Invalid e-mail.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username"
+             formControlName="username">
+      <div *ngIf="username.invalid && (username.dirty || username.touched)"
+           class="alert alert-danger">
+        <div *ngIf="username.errors.required">
+          Username is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="apps">Choose an app:</label><br>
+      <select  name="app" id="apps" formControlName="selected">
+        <option></option>
+        <option  [ngValue]="app" *ngFor="let app of apps;">{{app.name}} id: {{app.id}}</option>
+      </select>
+    </div>
+    <br><button class="btn btn-success" [disabled]="!form.valid" type="submit">Submit</button>
+  </form>
+</div>

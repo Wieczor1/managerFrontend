@@ -1,0 +1,39 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">Simple Table</h4>
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.username}}</td>
+                <td>
+                  <button (click)="updateUser(user.id)" class="btn btn-info">Update</button>
+                  <button (click)="deleteUser(user.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                  <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-left: 10px;">Details</button>
+                  <button (click)="uploadFile(user.id)" class="btn btn-info" style="margin-left: 10px;">Add file</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

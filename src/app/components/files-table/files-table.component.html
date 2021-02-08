@@ -1,0 +1,51 @@
+<div class="mat-elevation-z8 table-body">
+  <div class="scroller">
+    <mat-form-field class="paginator">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <mat-paginator class="paginator" #paginator
+                   [pageIndex]="0"
+                   [pageSize]="30"
+                   [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  <table mat-table class="full-width-table" matSort aria-label="Files" [dataSource]="dataSource">
+    <ng-container matColumnDef="filename">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Filename</th>
+      <td mat-cell *matCellDef="let row">{{row.filename | filename}}</td>
+    </ng-container>
+    <!--TODO zamiana tekstu na ikonki-->
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell *matCellDef="let row;">
+        <a (click)="check(row, $event)" [href]="this.filenameExists? row.filename : '#' " target="_blank"><button class="btn btn-info">Download</button></a>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div *ngIf="isLoading"
+       style="display: flex; justify-content: center; align-items: center;">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+  <script>
+    $(window).scroll(function() {
+      var distanceFromTop = $(this).scrollTop();
+      if (distanceFromTop >= $('#header').height()) {
+        $('#sticky').addClass('fixed');
+      } else {
+        $('#sticky').removeClass('fixed');
+      }
+    });
+
+  </script>
+
+
+</div>
+

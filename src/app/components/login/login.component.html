@@ -1,0 +1,67 @@
+<!--<form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>-->
+<!--  <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">-->
+<!--    <label for="username">Username</label>-->
+<!--    <input type="text"-->
+<!--           name="username" [(ngModel)]="loginUser.login"-->
+<!--           #username="ngModel" required />-->
+<!--    <div *ngIf="f.submitted-->
+<!--          && !username.valid">Username is required</div>-->
+<!--  </div>-->
+<!--  <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">-->
+<!--    <label for="password">Password</label>-->
+<!--    <input type="password"-->
+<!--           name="password" [(ngModel)]="loginUser.password"-->
+<!--           #password="ngModel" required />-->
+<!--    <div *ngIf="f.submitted-->
+<!--          && !password.valid">Password is required</div>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button>Login</button>-->
+<!--  </div>-->
+<!--</form>-->
+<div class="login-box">
+  <h2>Login</h2>
+  <form [formGroup]="form">
+    <div class="user-box">
+      <input type="text" name="username" class="form-control" formControlName="username" required="">
+      <label>Username</label>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)"
+           class="alert alert-danger">
+        <div *ngIf="username.errors.required">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="password"  name="password" class="form-control" formControlName="password" required="">
+      <label>Password</label>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+        <div *ngIf="password.errors.required">
+          Password is required.
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.invalid"
+         class="alert alert-danger">
+      Invalid password or username.
+    </div>
+    <a class="a" [class.hover]="form.valid" (click)="$event.preventDefault();(form.valid && login())" href="">
+<!--      //TODO zwraca ze zle haslo i wylacza jakos te linki-->
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Login
+    </a>
+    <a routerLink="/register" href="#" class="right a hover">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Register
+    </a>
+
+
+  </form>
+</div>

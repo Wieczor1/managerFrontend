@@ -1,0 +1,46 @@
+<div class="login-box">
+  <h3>Add app</h3>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="user-box">
+        <input  id="name" required class="form-control" type="text" name="name"
+      formControlName="name">
+      <label>Name</label>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+          </div>
+    </div>
+    <div class="user-box">
+      <input type="text"  class="form-control" name="domain"
+      formControlName="domain">
+      <label>Domain</label>
+      <div *ngIf="domain.invalid && (domain.dirty || domain.touched)"
+           class="alert alert-danger">
+        <div *ngIf="domain.errors.required">
+          Domain is required.
+        </div>
+        <div *ngIf="domain.errors.pattern">
+          Domain is invalid.
+        </div>
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="text" name="version"
+      class="form-control" formControlName="version">
+      <label>Version</label>
+      <div *ngIf="version.invalid && (version.dirty || version.touched)"
+           class="alert alert-danger">
+        <div *ngIf="version.errors.required">
+          Version is required.
+        </div>
+        <div *ngIf="version.errors.pattern">
+          Version is invalid.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success" [disabled]="!form.valid" type="submit">Submit</button>
+  </form>
+</div>
+

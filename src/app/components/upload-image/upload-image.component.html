@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>Select image to upload: </h3>
+
+
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="file">Choose File: </label><br>
+      <input type="file"
+             id="file"
+             (change)="handleImageInput($event.target.files)"
+             accept="image/*">
+    </div>
+    <div mat-dialog-actions>
+      <button class="mat-raised-button btn btn-success" [disabled]="!imageToUpload" type="submit" >Select</button>
+      <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
+    </div>
+  </form>
+</div>
+<!--TODO jednolity kolor dialogow-->
+<!--TODO  overflow-wrap: break-word; jakny ci sie chciao bawic z za dlugimi-->
+
+
+

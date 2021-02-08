@@ -1,0 +1,26 @@
+<h3 mat-dialog-title>Select csv to import: </h3>
+
+
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="file">Choose File: </label><br>
+      <input type="file"
+             id="file"
+             (change)="handleCsvInput($event.target.files)"
+             accept=".csv">
+    </div>
+    <div *ngIf="!success"
+         class="alert alert-danger">
+        Invalid csv file!
+
+    </div>
+    <div mat-dialog-actions>
+      <button class="mat-raised-button btn btn-success" [disabled]="!csvToImport || !csvToImport.name.endsWith('.csv') || !success" type="submit" >Select</button>
+      <button class="mat-raised-button btn btn-danger" (click)="close()">Close</button>
+    </div>
+  </form>
+</div>
+
+
+

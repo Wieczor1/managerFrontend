@@ -1,0 +1,54 @@
+.full-width-table {
+  width: 100%;
+}
+
+table {
+  background: #364156;
+  color: white;
+}
+.scroller {
+
+  position: sticky;
+  top: 0px;
+  z-index: 112;
+}
+.paginator {
+  background: #4F6D7A;
+  color: white !important;
+}
+
+
+
+th {
+  background:  #71a2b6;
+  color: white;
+}
+th, td {
+  color: white;
+}
+
+.table-body {
+  overflow-y:auto;
+  max-height:79vh;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: white !important;;
+}

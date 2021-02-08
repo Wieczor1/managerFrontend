@@ -1,0 +1,38 @@
+<h3>User Details</h3>
+<div>
+  <span><b>First Name: </b>{{user.firstName}}</span><br>
+  <span><b>Last Name: </b>{{user.lastName}}</span><br>
+  <span><b>E-mail: </b>{{user.email}}</span><br>
+  <span><b>Username: </b>{{user.username}}</span><br>
+
+</div>
+<h3>User's apps</h3>
+<ng-container *ngIf="userApps?.length > 0; else noApps">
+  <div  *ngFor="let userApp of userApps;">
+    <a [routerLink]="['/app-details', userApp.id]"><b>{{userApp.name}}</b></a>
+    <button class="btn-danger btn" (click)="deleteApp(userApp)">Delete</button><br><br>
+  </div>
+</ng-container>
+<ng-container *ngIf="userFiles?.length > 0; else noFiles">
+  <h3>List of User's files:</h3>
+  <ng-container *ngFor="let userFile of userFiles;">
+    <div>
+      <span><a [href]="(userFile.filename | filenameExists)? userFile.filename : url">{{userFile.filename | filename}}</a> in app: <a [routerLink]="['/app-details', userFile.app.id]">{{userFile.app.name }}</a></span>
+      <button class="btn-danger btn" (click)="deleteUserFile(userFile)">Delete</button><br><br>
+    </div>
+    <!--  <button class="btn-info btn">Edit</button> TODO e napisac jaki zalacznik w jakiej aplikacji, wiekszosc  JAKO DIALOGI gdzie to wygodne-->
+  </ng-container>
+</ng-container>
+
+<ng-template #noFiles>
+  <h3>List of User's files:</h3>
+  <p>User has no files.</p>
+</ng-template>
+
+<ng-template #noApps>
+  <p>User has no apps.</p>
+</ng-template>
+<div style="display: block">
+  <canvas #lineChart>{{ chart }}</canvas>
+</div>
+

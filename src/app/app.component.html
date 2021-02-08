@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark nav">
+  <ul class="navbar-nav">
+    <li class="nav-item"  *ngIf="loginService.isAuthenticated()">
+      <a routerLink="users" routerLinkActive="active" class="nav-link">Users list</a>
+    </li>
+    <li class="nav-item"  *ngIf="loginService.isAuthenticated()">
+      <a routerLink="apps" routerLinkActive="active" class="nav-link">App list</a>
+    </li>
+    <li class="nav-item"  *ngIf="loginService.isAuthenticated()">
+      <a routerLink="create-app" routerLinkActive="active" class="nav-link">Add app</a>
+    </li>
+    <li class="nav-item" *ngIf="loginService.isAuthenticated() && loginService.getAuthorities()=='ROLE_USER'" >
+      <a routerLink="files" routerLinkActive="active" class="nav-link">Files</a>
+    </li>
+    <li class="nav-item" *ngIf="!loginService.isAuthenticated()">
+      <a routerLink="login" routerLinkActive="active" class="nav-link">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="loginService.isAuthenticated()">
+      <a routerLink="" (click)="logout()" routerLinkActive="active" class="nav-link">Logout</a>
+    </li>
+    <li *ngIf="loginService.isAuthenticated() && loginService.getAuthorities()=='ROLE_ADMIN'" class="nav-item">
+      <a [href]="url" target="_blank"><button class="btn btn-info">Export</button></a>
+    </li>
+    <li *ngIf="loginService.isAuthenticated() && loginService.getAuthorities()=='ROLE_ADMIN'" class="nav-item">
+      <button (click)="import()" class="btn btn-success">Import</button>
+    </li>
+  </ul>
+</nav>
+<div class="container gradient">
+  <router-outlet></router-outlet>
+</div>
+
+
+

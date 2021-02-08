@@ -1,0 +1,39 @@
+<h3>App Details</h3>
+<div>
+  <span><b>Name: </b>{{app.name}}</span><br>
+  <span><b>Domain: </b>{{app.domain}}</span><br>
+  <span><b>Version: </b>{{app.version}}</span><br>
+</div>
+<h3>Application Location</h3>
+<div *ngIf="appLocations?.length > 0; else newAppLocation">
+  <ng-container *ngFor="let appLocation of appLocations;">
+  <span><b>Country: </b>{{appLocation.country}}</span><br>
+  <span><b>City: </b>{{appLocation.city}}</span><br>
+  <span><b>Street: </b>{{appLocation.street}}</span><br>
+  <span><b>Street Number: </b>{{appLocation.streetNumber}}</span><br>
+  <button *ngIf="loginService.getAuthorities()==='ROLE_ADMIN'" class="btn-info btn" (click)="editAppLocation(appLocation.id)">Edit</button>
+  <button *ngIf="loginService.getAuthorities()==='ROLE_ADMIN'"class="btn-danger btn" (click)="deleteAppLocation(appLocation.id)">Delete</button><br>
+  </ng-container>
+  <h3>Add new app location</h3>
+  <button *ngIf="loginService.getAuthorities()==='ROLE_ADMIN'" class="btn-info btn" (click)="createAppLocation(app.id)">Create App Location</button>
+</div>
+<ng-template #newAppLocation>
+  <p>No app location</p>
+  <button class="btn-info btn" (click)="createAppLocation(app.id)">Create App Location</button>
+</ng-template>
+<div class="images">
+  <h3>App images:</h3>
+<!--  v [hidden]="deleted.get(selectedImage)"-->
+  <ng-container  *ngFor="let image of appImages; let i = index;">
+    <input *ngIf="loginService.getAuthorities()==='ROLE_ADMIN'" type="radio" id="{{image.id}}" name="radio" (click)="onImageChange(image);">
+    <label for="{{image.id}}" [hidden]="deleted.get(image.id)">
+        <img src="{{image.imageUrl}}" alt="App image">
+
+      <div [ngClass]="selectedImage.id == image.id? 'visible': 'invisible'">
+        <button class="btn-info btn" (click)="editImage(selectedImage)">Edit</button>
+        <button class="btn-danger btn" (click)="deleteImage(selectedImage)">Delete</button>
+      </div>
+
+    </label>
+  </ng-container>
+</div>

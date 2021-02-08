@@ -1,0 +1,61 @@
+<h3 mat-dialog-title>Edit app location:</h3>
+
+<div mat-dialog-content>
+  <div class="col-md-6 offset-md-3">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
+      <div class="form-group">
+        <label>Country</label>
+        <input type="text" class="form-control" name="country" formControlName="country">
+        <div *ngIf="country.invalid && (country.dirty || country.touched)"
+             class="alert alert-danger">
+          <div *ngIf="country.errors?.required">
+            Country is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" name="city" formControlName="city">
+        <div *ngIf="city.invalid && (city.dirty || city.touched)"
+             class="alert alert-danger">
+          <div *ngIf="city.errors?.required">
+            City is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Street</label>
+        <input type="text" class="form-control" name="street" formControlName="street">
+        <div *ngIf="street.invalid && (street.dirty || street.touched)"
+             class="alert alert-danger">
+          <div *ngIf="street.errors?.required">
+            Street is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Street Number</label>
+        <input type="text" class="form-control" name="streetNumber" formControlName="streetNumber">
+        <div *ngIf="streetNumber.invalid && (streetNumber.dirty || streetNumber.touched)"
+             class="alert alert-danger">
+          <div *ngIf="streetNumber.errors?.required">
+            Street number is required.
+          </div>
+          <div *ngIf="streetNumber.errors?.pattern">
+              Invalid street number.
+          </div>
+        </div>
+      </div>
+
+      <div mat-dialog-actions>
+        <button [disabled]="!form.valid"  class="btn mat-raised-button btn-success" type="submit">Submit</button>
+
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+
+
